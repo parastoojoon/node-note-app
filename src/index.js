@@ -11,7 +11,7 @@ app.use(routes);
 app.listen(port, () =>
   console.log(`Example backend API listening on port ${port}!`)
 );
-app.options("*", cors());
+app.options("*", cors({origin:true,credentials: true}));
 
 export default {
   app,
