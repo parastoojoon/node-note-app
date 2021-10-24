@@ -1,7 +1,9 @@
 import notesService from "../services/notes.service.js";
+import { Validator } from "node-input-validator";
+import { Response } from "../models/response.model.js";
 
-const listNotes = function (req, res) {
-  res.send(notesService.listNotes());
+const getNotes = function (req, res) {
+  res.send(notesService.getNotes());
 };
 
 const getNote = function (req, res) {
@@ -9,15 +11,36 @@ const getNote = function (req, res) {
 };
 
 const addNote = function (req, res) {
-  res.status(201).send(notesService.addNote(req.body)).end();
+  const validator = new Validator(req.body, {
+    note: "required",
+    title: "required",
+  });
+
+  validator.check().then((matched) => {
+    if (!matched) {
+      res.status(400).send(new Response(null, validator.errors));
+    } else {
+      res.status(201).send(notesService.addNote(req.body.title, req.body.note));
+    }
+  });
 };
 
 const updateNote = function (req, res) {
-  res.status(202).send(notesService.updateNote(req.params._id, req.body)).end();
+  const validator = new Validator(req.body, {
+    note: "required",
+  });
+
+  validator.check().then((matched) => {
+    if (!matched) {
+      res.status(400).send(new Response(null, validator.errors));
+    } else {
+      res.status(202).send(notesService.updateNote(req.params._id, req.body));
+    }
+  });
 };
 
 const removeNote = function (req, res) {
-  res.status(202).send(notesService.deleteNote(req.params._id)).end();
+  res.status(202).send(notesService.deleteNote(req.params._id));
 };
 
 const findNote = function (req, res) {
@@ -30,7 +53,7 @@ const findNote = function (req, res) {
 };
 
 export default {
-  listNotes,
+  getNotes,
   getNote,
   addNote,
   updateNote,

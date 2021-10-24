@@ -13,7 +13,7 @@ router
 
 router
   .route("/notes")
-  .get(noteController.listNotes)
+  .get(noteController.getNotes)
   .post(noteController.addNote);
 
 export default router;

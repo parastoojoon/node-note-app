@@ -1,8 +1,9 @@
 class Note {
-  fields = {
-    id: null,
-    note: null,
-  };
+  constructor(id, title, note) {
+    this.id = id;
+    this.note = note;
+    this.title = title;
+  }
 
   fill(newFields) {
     for (var field in this.fields) {
@@ -11,16 +12,6 @@ class Note {
       }
     }
   }
-
-  getId() {
-    return this.fields.id;
-  }
-
-  getNote() {
-    return this.fields.note;
-  }
 }
 
-export default {
-  Note,
-};
+export { Note };
