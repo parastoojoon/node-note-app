@@ -5,7 +5,7 @@ const app = express();
 const port = 4000;
 
 app.use(express.json());
-app.options("*", cors({ origin: true, preflightContinue: true }));
+app.use(cors());
 import routes from "./routes/notes.route.js";
 app.use(routes);
 
