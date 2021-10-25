@@ -9,12 +9,10 @@ app.use(cors());
 import routes from "./routes/notes.route.js";
 app.use(routes);
 
-app.get("/", (req, res) => res.json({ message: "Welcome to our Bookstore!" }));
+app.get("/", (req, res) => res.json({ message: "Note taking app" }));
 
 app.listen(port, () =>
   console.log(`Example backend API listening on port ${port}!`)
 );
 
-export default {
-  app,
-};
+export default { app };
