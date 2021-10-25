@@ -1,4 +1,5 @@
 import express from "express";
+import http from "http";
 import cors from "cors";
 
 const app = express();
@@ -11,8 +12,8 @@ app.use(routes);
 
 app.get("/", (req, res) => res.json({ message: "Note taking app" }));
 
-app.listen(port, () =>
-  console.log(`Example backend API listening on port ${port}!`)
-);
+const httpServer = http.createServer(app);
+httpServer.listen(port);
+console.log(`Example backend API listening on port ${port}!`);
 
 export default { app };
