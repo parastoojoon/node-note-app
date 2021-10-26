@@ -4,6 +4,14 @@ Node.js app to allow for taking notes.
 
 ## Use
 
+```bash
+# Start backend 
+npm start 
+
+# To run unit-test cases 
+npm test
+
+```
 
 ## API
 
