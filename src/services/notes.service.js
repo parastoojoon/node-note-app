@@ -40,7 +40,7 @@ const addNote = function (_title, _notes) {
 };
 
 const updateNote = function (_id, _title, _notes) {
-  db.push(`/api/notes/${_id}`, new Note(_notes), true);
+  db.push(`/api/notes/${_id}`, new Note(_id, _title, _notes), true);
 
   return _id;
 };

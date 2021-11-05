@@ -28,13 +28,14 @@ const addNote = function (req, res) {
 const updateNote = function (req, res) {
   const validator = new Validator(req.body, {
     note: "required",
+    title: "required"
   });
 
   validator.check().then((matched) => {
     if (!matched) {
       res.status(400).send(new Response(null, validator.errors));
     } else {
-      res.status(202).send(notesService.updateNote(req.params._id, req.body));
+      res.status(202).send(notesService.updateNote(req.params._id, req.body.title, req.body.note));
     }
   });
 };
